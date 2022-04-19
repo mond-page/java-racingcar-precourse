@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.model;
+
+import racingcar.constants.PositionMessage;
 
 public class Position {
     private static final int MIN_NUMBER = 0;
