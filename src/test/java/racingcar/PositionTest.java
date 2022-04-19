@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,19 @@ class PositionTest {
         assertAll(
                 () -> assertThat(Position.isMoving(3)).isFalse(),
                 () -> assertThat(Position.isMoving(0)).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("0보다 작거나 9보다 큰 수는 잘못된 값이다")
+    void invalidNumber() {
+        assertAll(
+                () -> assertThatThrownBy(() -> Position.validateNumberRange(10))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(PositionMessage.INVALID_NUMBER_RANGE_MESSAGE),
+                () -> assertThatThrownBy(() -> Position.validateNumberRange(-1))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(PositionMessage.INVALID_NUMBER_RANGE_MESSAGE)
         );
     }
 }
