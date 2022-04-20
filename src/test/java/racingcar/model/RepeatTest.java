@@ -31,7 +31,7 @@ class RepeatTest {
     void invalidRepeatNumberNegative() {
         assertThatThrownBy(() -> Repeat.valueOf("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(RepeatMessage.INVALID_NUMBER_RANGE);
+                .hasMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @ParameterizedTest(name = "시도할 횟수가 숫자가 아닌 값({0})이다")
@@ -39,7 +39,7 @@ class RepeatTest {
     void invalidRepeatNumberCharacter(String inputNumber) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Repeat.valueOf(inputNumber))
-                .withMessageContaining(RepeatMessage.INVALID_NUMBER_FORMAT);
+                .withMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @Test

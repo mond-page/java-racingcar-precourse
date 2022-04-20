@@ -22,7 +22,7 @@ public class Repeat {
 
     private static void validNumberFormat(String number) {
         if(!number.matches(NUMBER_FORMAT_REGEX)) {
-            throw new IllegalArgumentException(RepeatMessage.INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
         }
     }
 
