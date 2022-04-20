@@ -21,7 +21,7 @@ public class Name {
     }
 
     private static boolean isMoreThan5Length(String name) {
-        return name.length() > 5;
+        return name.trim().length() > 5;
     }
 
     private static boolean isBlankEmpty(String name) {
