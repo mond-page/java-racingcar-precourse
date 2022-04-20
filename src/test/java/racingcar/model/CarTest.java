@@ -1,10 +1,12 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.constants.CarMessage;
 
 class CarTest {
     private Car car;
@@ -14,17 +16,37 @@ class CarTest {
         car = Car.create();
     }
 
-    @Test
-    @DisplayName("전진 가능한 값이면 움직일 수 있다")
-    void isMovingTrueThenMoveCar() {
-        car.move(5);
-        assertThat(car.getPosition()).isPositive();
+    @ParameterizedTest(name = "4이상 9이하의 수({0})이면 전진할 수 있다")
+    @ValueSource(ints = {4, 9})
+    void canMove(int number) {
+        assertThat(car.isMoving(number)).isTrue();
     }
 
-    @Test
-    @DisplayName("전진 가능한 값이 아니면 움직일 수 없다")
-    void isMovingFalseThenDontMoveCar() {
-        car.move(3);
+    @ParameterizedTest(name = "0이상 3이하의 수({0})이면 전진할 수 없다")
+    @ValueSource(ints = {0, 3})
+    void canNotMove(int number) {
+        assertThat(car.isMoving(number)).isFalse();
+    }
+
+    @ParameterizedTest(name = "0보다 작거나 9보다 큰 수({0})는 잘못된 값이다")
+    @ValueSource(ints = {-1, 10})
+    void invalidNumber(int number) {
+        assertThatThrownBy(() -> car.validateNumberRange(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CarMessage.INVALID_NUMBER_RANGE_MESSAGE);
+    }
+
+    @ParameterizedTest(name = "전진 가능한 값({0})이면 움직인다")
+    @ValueSource(ints = {4, 9})
+    void isMovingTrueThenMoveCar(int number) {
+        car.move(number);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @ParameterizedTest(name = "전진 가능한 값({0})이 아니면 움직이지 않는다")
+    @ValueSource(ints = {0, 3})
+    void isMovingFalseThenDontMoveCar(int number) {
+        car.move(number);
         assertThat(car.getPosition()).isZero();
     }
 }
