@@ -14,7 +14,7 @@ public class Name {
         return new Name(name);
     }
 
-    private static void validNameLength(String name) {
+    public static void validNameLength(String name) {
         if (isBlankEmpty(name) || isMoreThan5Length(name)) {
             throw new IllegalArgumentException(NameMessage.INVALID_NAME_LENGTH);
         }
