@@ -17,7 +17,7 @@ public class Names {
         createNames(nameArray);
     }
 
-    public static Names create(String names) {
+    public static Names valueOf(String names) {
         validEmptyNames(names);
         String[] nameArray = separateNames(names);
         validDuplicateNames(nameArray);
@@ -35,6 +35,10 @@ public class Names {
         for (String name : nameArray) {
             names.add(Name.valueOf(name));
         }
+    }
+
+    public List<Name> getNames() {
+        return names;
     }
 
     private static void validEmptyNames(String inputNames) {
