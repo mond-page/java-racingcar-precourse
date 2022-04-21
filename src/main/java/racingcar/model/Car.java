@@ -7,14 +7,16 @@ public class Car {
     private static final int MAX_NUMBER = 9;
     private static final int MOVING_MIN_NUMBER = 4;
 
+    private final Name name;
     private final Position position;
 
-    private Car() {
+    private Car(Name name) {
+        this.name = name;
         this.position = Position.create();
     }
 
-    public static Car create() {
-        return new Car();
+    public static Car create(Name name) {
+        return new Car(name);
     }
 
     public void move(int number) {
@@ -32,6 +34,10 @@ public class Car {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(CarMessage.INVALID_NUMBER_RANGE_MESSAGE);
         }
+    }
+
+    public String getName() {
+        return name.getName();
     }
 
     public int getPosition() {

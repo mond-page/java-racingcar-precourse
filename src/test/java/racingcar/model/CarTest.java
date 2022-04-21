@@ -4,16 +4,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constants.CarMessage;
 
 class CarTest {
+    private String carName = "mond";
     private Car car;
 
     @BeforeEach
     void setUp() {
-        car = Car.create();
+        car = Car.create(Name.valueOf(carName));
+    }
+
+    @Test
+    @DisplayName("자동차의 이름은 입력받은 값이다")
+    void inputNameIsCarName() {
+        assertThat(car.getName()).isEqualTo(carName);
     }
 
     @ParameterizedTest(name = "4이상 9이하의 수({0})이면 전진할 수 있다")
