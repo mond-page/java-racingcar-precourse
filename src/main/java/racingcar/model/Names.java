@@ -13,15 +13,20 @@ public class Names {
 
     private List<Name> names;
 
-    public Names(String names) {
+    private Names(String[] nameArray) {
+        createNames(nameArray);
+    }
+
+    public static Names create(String names) {
         validEmptyNames(names);
         String[] nameArray = separateNames(names);
         validDuplicateNames(nameArray);
         validLengthNames(nameArray);
-        createNames(nameArray);
+
+        return new Names(nameArray);
     }
 
-    private String[] separateNames(String inputNames) {
+    private static String[] separateNames(String inputNames) {
         return inputNames.split(NAME_SEPARATOR_CHARACTER);
     }
 
@@ -32,28 +37,28 @@ public class Names {
         }
     }
 
-    private void validEmptyNames(String inputNames) {
+    private static void validEmptyNames(String inputNames) {
         if (isEmptyNames(inputNames) || isOnlySeparatorCharacter(inputNames)) {
             throw new IllegalArgumentException(NameMessage.EMPTY_INPUT_NAMES);
         }
     }
 
-    private boolean isEmptyNames(String inputNames) {
+    private static boolean isEmptyNames(String inputNames) {
         return inputNames.isEmpty();
     }
 
-    private boolean isOnlySeparatorCharacter(String inputNames) {
+    private static boolean isOnlySeparatorCharacter(String inputNames) {
         return inputNames.matches(ONLY_SEPARATOR_CHARACTER_REGEX);
     }
 
-    private void validDuplicateNames(String[] nameArray) {
+    private static void validDuplicateNames(String[] nameArray) {
         Set<String> validationSet = new HashSet<>(Arrays.asList(nameArray));
         if (validationSet.size() != nameArray.length) {
             throw new IllegalArgumentException(NameMessage.DUPLICATE_INPUT_NAME);
         }
     }
 
-    private void validLengthNames(String[] nameArray) {
+    private static void validLengthNames(String[] nameArray) {
         for (String name : nameArray) {
             Name.validNameLength(name);
         }

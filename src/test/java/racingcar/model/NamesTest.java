@@ -15,21 +15,21 @@ class NamesTest {
     @ParameterizedTest(name = "5자 이하의 이름으로 2개 이상의 값({0})을 입력 받는다")
     @ValueSource(strings = {"mond,latte,bana", "apple, pink, choco"})
     void inputValidNames(String inputNames) {
-        assertThat(new Names(inputNames)).isNotNull();
+        assertThat(Names.create(inputNames)).isNotNull();
     }
 
     @Test
     @DisplayName("구분자만 입력 받는다")
     void inputInvalidNamesOnlySeparatorCharacter() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Names(","))
+                .isThrownBy(() -> Names.create(","))
                 .withMessageContaining(NameMessage.EMPTY_INPUT_NAMES);
     }
 
     @Test
     @DisplayName("공백을 입력 받는다")
     void inputInvalidNamesOnlyEmptyString() {
-        assertThatThrownBy(() -> new Names(" "))
+        assertThatThrownBy(() -> Names.create(" "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NameMessage.INVALID_NAME_LENGTH);
     }
@@ -37,7 +37,7 @@ class NamesTest {
     @Test
     @DisplayName("중복된 이름이 존재한다.")
     void inputInvalidNamesDuplicateName() {
-        assertThatThrownBy(() -> new Names("mond,choco,mond"))
+        assertThatThrownBy(() -> Names.create("mond,choco,mond"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NameMessage.DUPLICATE_INPUT_NAME);
     }
