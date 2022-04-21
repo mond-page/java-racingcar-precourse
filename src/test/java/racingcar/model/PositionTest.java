@@ -18,17 +18,17 @@ class PositionTest {
     @Test
     @DisplayName("초기 위치는 0이다.")
     void initPositionZero() {
-        assertThat(position.getPosition()).isZero();
+        assertThat(position.getValue()).isZero();
     }
 
     @Test
     @DisplayName("움직이면 위치는 1만큼 증가한다.")
     void movePositionThen() {
-        position.movePosition();
+        position.moveValue();
 
         assertAll(
-                () -> assertThat(position.getPosition()).isNotZero(),
-                () -> assertThat(position.getPosition()).isEqualTo(1)
+                () -> assertThat(position.getValue()).isNotZero(),
+                () -> assertThat(position.getValue()).isEqualTo(1)
         );
     }
 }

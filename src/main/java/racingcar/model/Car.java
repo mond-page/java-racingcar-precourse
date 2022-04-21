@@ -22,7 +22,7 @@ public class Car {
     public void move(int number) {
         validateNumberRange(number);
         if (isMoving(number)) {
-            position.movePosition();
+            position.moveValue();
         }
     }
 
@@ -40,7 +40,7 @@ public class Car {
         return name.getName();
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 }

@@ -13,11 +13,11 @@ public class Position {
         return new Position();
     }
 
-    public void movePosition() {
+    public void moveValue() {
         this.value++;
     }
 
-    public int getPosition() {
+    public int getValue() {
         return value;
     }
 }

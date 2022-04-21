@@ -49,13 +49,15 @@ class CarTest {
     @ValueSource(ints = {4, 9})
     void isMovingTrueThenMoveCar(int number) {
         car.move(number);
-        assertThat(car.getPosition()).isEqualTo(1);
+        Position position = car.getPosition();
+        assertThat(position.getValue()).isEqualTo(1);
     }
 
     @ParameterizedTest(name = "전진 가능한 값({0})이 아니면 움직이지 않는다")
     @ValueSource(ints = {0, 3})
     void isMovingFalseThenDontMoveCar(int number) {
         car.move(number);
-        assertThat(car.getPosition()).isZero();
+        Position position = car.getPosition();
+        assertThat(position.getValue()).isZero();
     }
 }
