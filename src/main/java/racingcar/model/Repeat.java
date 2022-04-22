@@ -39,4 +39,8 @@ public class Repeat {
     private static boolean isOutOfRange(Long number) {
         return number < MIN_REPEAT_NUMBER || number > MAX_REPEAT_NUMBER;
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

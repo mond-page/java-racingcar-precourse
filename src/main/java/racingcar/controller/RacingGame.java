@@ -4,26 +4,24 @@ import camp.nextstep.edu.missionutils.Console;
 import racingcar.model.Cars;
 import racingcar.model.Names;
 import racingcar.model.Repeat;
+import racingcar.view.Circuit;
 import racingcar.view.Receipt;
 
 public class RacingGame {
     private Cars cars;
     private Repeat repeat;
 
-    private RacingGame(Cars cars, Repeat repeat) {
-        this.cars = cars;
-        this.repeat = repeat;
-    }
-
-    public static void start() {
+    public void start() {
         set();
+        play();
     }
 
-    private static void set() {
-        new RacingGame(setCarNames(), setRepeatNumbers());
+    private void set() {
+        cars = setCarNames();
+        repeat = setRepeatNumbers();
     }
 
-    private static Repeat setRepeatNumbers() {
+    private Repeat setRepeatNumbers() {
         try {
             Receipt.printInputRepeatNumber();
             return Repeat.valueOf(Console.readLine());
@@ -33,7 +31,7 @@ public class RacingGame {
         }
     }
 
-    private static Cars setCarNames() {
+    private Cars setCarNames() {
         try {
             Receipt.printInputCarNames();
             Names names = Names.valueOf(Console.readLine());
@@ -42,5 +40,19 @@ public class RacingGame {
             Receipt.printErrorMessage(e);
             return setCarNames();
         }
+    }
+
+    private void play() {
+        Circuit.printRaceStart();
+        repeatPlay(repeat.getNumber());
+    }
+
+    private void repeatPlay(int repeatNumber) {
+        if (repeatNumber == 0) {
+            return;
+        }
+        cars.move();
+        Circuit.printCarsPosition(cars);
+        repeatPlay(repeatNumber - 1);
     }
 }
