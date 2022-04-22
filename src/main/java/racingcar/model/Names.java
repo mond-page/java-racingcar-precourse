@@ -27,7 +27,12 @@ public class Names {
     }
 
     private static String[] separateNames(String inputNames) {
-        return inputNames.split(NAME_SEPARATOR_CHARACTER);
+        String[] separatedNames = inputNames.split(NAME_SEPARATOR_CHARACTER);
+        for (int idx = 0; idx < separatedNames.length; idx++) {
+            separatedNames[idx] = separatedNames[idx].trim();
+        }
+
+        return separatedNames;
     }
 
     private void createNames(String[] nameArray) {

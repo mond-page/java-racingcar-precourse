@@ -34,10 +34,10 @@ class NamesTest {
                 .hasMessageContaining(NameMessage.INVALID_NAME_LENGTH);
     }
 
-    @Test
-    @DisplayName("중복된 이름이 존재한다.")
-    void inputInvalidNamesDuplicateName() {
-        assertThatThrownBy(() -> Names.valueOf("mond,choco,mond"))
+    @ParameterizedTest(name = "중복된 이름이 존재한다.({0})")
+    @ValueSource(strings = {"mond,choco,mond", "latte, bana, latte"})
+    void inputInvalidNamesDuplicateName(String names) {
+        assertThatThrownBy(() -> Names.valueOf(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NameMessage.DUPLICATE_INPUT_NAME);
     }
