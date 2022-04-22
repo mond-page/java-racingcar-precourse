@@ -5,9 +5,14 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constants.NameMessage;
 import racingcar.constants.RepeatMessage;
@@ -73,6 +78,46 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @ParameterizedTest(name = "자동차 경주 게임 시작({3})")
+    @MethodSource("provideRacingGameParameters")
+    void startRacingGame(String names, String repeatNumber, List<Integer> moving, String champion) {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run(names, repeatNumber);
+                    assertThat(output()).contains(champion);
+                },
+                moving.get(0), moving.get(1)
+        );
+    }
+
+    private static Stream<Arguments> provideRacingGameParameters() {
+        Arguments testCase1 = Arguments.of(
+                "mond,apple",
+                "1",
+                Arrays.asList(MOVING_FORWARD, MOVING_FORWARD),
+                "최종 우승자: mond, apple"
+        );
+
+        Arguments testCase2 = Arguments.of(
+                "mond,apple",
+                "1",
+                Arrays.asList(MOVING_FORWARD, STOP),
+                "최종 우승자: mond"
+        );
+
+        Arguments testCase3 = Arguments.of(
+                "mond,apple",
+                "1",
+                Arrays.asList(STOP, MOVING_FORWARD),
+                "최종 우승자: apple"
+        );
+
+        return Stream.of(
+                testCase1,
+                testCase2,
+                testCase3
+        );
+    }
 
     @Override
     public void runMain() {

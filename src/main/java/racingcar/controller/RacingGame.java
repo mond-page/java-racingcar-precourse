@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.model.Cars;
+import racingcar.model.Champion;
 import racingcar.model.Names;
 import racingcar.model.Repeat;
 import racingcar.view.Circuit;
@@ -14,6 +15,12 @@ public class RacingGame {
     public void start() {
         set();
         play();
+        result();
+    }
+
+    private void result() {
+        Champion champion = Champion.pick(cars);
+        Circuit.printChampion(champion.announce());
     }
 
     private void set() {
