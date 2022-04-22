@@ -10,6 +10,9 @@ public final class Circuit {
     private static final String REPEAT_SEPARATION_MESSAGE = "\n";
     private static final String CAR_POSITION_MESSAGE = "%s : %s\n";
 
+    private Circuit() {
+    }
+
     public static void printRaceStart() {
         System.out.println(RESULT_MESSAGE);
     }
