@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constants.NameMessage;
+import racingcar.constants.RepeatMessage;
 
 class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
@@ -59,6 +60,19 @@ class ApplicationTest extends NsTest {
                 }
         );
     }
+
+    @ParameterizedTest(name = "사용자로부터 올바르지 않은 횟수({0})가 입력")
+    @ValueSource(strings = {"mond", "-1", "0", "2147483648"})
+    void inputInvalidRepeatNumberByUser(String repeatNumber) {
+        assertSimpleTest(
+                () -> {
+                    runException("mond,bana,latte", repeatNumber);
+                    assertThat(output()).containsAnyOf(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT,
+                            RepeatMessage.INVALID_NUMBER_RANGE);
+                }
+        );
+    }
+
 
     @Override
     public void runMain() {
