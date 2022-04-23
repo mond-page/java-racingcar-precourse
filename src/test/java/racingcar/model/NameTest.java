@@ -24,12 +24,12 @@ class NameTest {
         );
     }
 
-    @ParameterizedTest(name = "이름값이 공백이거나 아예 비어있다")
-    @ValueSource(strings = {"", " "})
-    void inputInvalidNameEmpty(String inputName) {
-        assertThatThrownBy(() -> Name.valueOf(inputName))
+    @ParameterizedTest(name = "이름값({0})이 공백이거나 아예 비어있다")
+    @ValueSource(strings = {"", " ", "\n"})
+    void inputInvalidNameEmpty(String name) {
+        assertThatThrownBy(() -> Name.valueOf(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NameMessage.INVALID_NAME_LENGTH);
+                .hasMessage(NameMessage.INVALID_NAME_LENGTH);
     }
 
     @Test
@@ -37,6 +37,6 @@ class NameTest {
     void inputInvalidNameLengthOver() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Name.valueOf("banana"))
-                .withMessageContaining(NameMessage.INVALID_NAME_LENGTH);
+                .withMessage(NameMessage.INVALID_NAME_LENGTH);
     }
 }
