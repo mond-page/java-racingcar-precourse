@@ -3,7 +3,7 @@ package racingcar.model;
 import racingcar.constants.NameMessage;
 
 public class Name {
-    private String value;
+    private final String value;
 
     private Name(String name) {
         this.value = name;

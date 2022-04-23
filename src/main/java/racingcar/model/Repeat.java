@@ -7,7 +7,7 @@ public class Repeat {
     private static final int MIN_REPEAT_NUMBER = 1;
     private static final int MAX_REPEAT_NUMBER = Integer.MAX_VALUE;
 
-    private int number;
+    private final int number;
 
     private Repeat(int number) {
         this.number = number;

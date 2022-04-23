@@ -32,7 +32,7 @@ public class Car {
 
     void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(CarMessage.INVALID_NUMBER_RANGE_MESSAGE);
+            throw new IllegalArgumentException(CarMessage.INVALID_NUMBER_RANGE);
         }
     }
 

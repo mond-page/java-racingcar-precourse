@@ -42,7 +42,7 @@ class CarTest {
     void invalidNumber(int number) {
         assertThatThrownBy(() -> car.validateNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CarMessage.INVALID_NUMBER_RANGE_MESSAGE);
+                .hasMessageContaining(CarMessage.INVALID_NUMBER_RANGE);
     }
 
     @ParameterizedTest(name = "전진 가능한 값({0})이면 움직인다")
