@@ -23,7 +23,7 @@ class RepeatTest {
     void invalidRepeatNumberZero() {
         assertThatThrownBy(() -> Repeat.valueOf("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
+                .hasMessage(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @Test
@@ -31,7 +31,7 @@ class RepeatTest {
     void invalidRepeatNumberNegative() {
         assertThatThrownBy(() -> Repeat.valueOf("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
+                .hasMessage(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @Test
@@ -47,7 +47,7 @@ class RepeatTest {
     void invalidRepeatNumberCharacter(String inputNumber) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Repeat.valueOf(inputNumber))
-                .withMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
+                .withMessage(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @Test
@@ -55,7 +55,7 @@ class RepeatTest {
     void invalidRepeatNumberOverflow() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Repeat.valueOf("2147483648"))
-                .withMessageContaining(RepeatMessage.INVALID_NUMBER_RANGE);
+                .withMessage(RepeatMessage.INVALID_NUMBER_RANGE);
     }
 
 }

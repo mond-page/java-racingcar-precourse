@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.constants.CarMessage;
 
 class CarTest {
-    private String carName = "mond";
+    private final String carName = "mond";
     private Car car;
 
     @BeforeEach
@@ -42,7 +42,7 @@ class CarTest {
     void invalidNumber(int number) {
         assertThatThrownBy(() -> car.validateNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CarMessage.INVALID_NUMBER_RANGE);
+                .hasMessage(CarMessage.INVALID_NUMBER_RANGE);
     }
 
     @ParameterizedTest(name = "전진 가능한 값({0})이면 움직인다")

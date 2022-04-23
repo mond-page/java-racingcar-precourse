@@ -33,8 +33,8 @@ class ChampionTest {
     }
 
     @Test
-    @DisplayName("우승자를 뽑는다")
-    void pickChampion() {
+    @DisplayName("우승자를 뽑고 발표한다")
+    void pickAndAnnounceChampion() {
         Champion champion = Champion.pick(cars);
         assertThat(champion.announce().getCars()).hasSizeGreaterThan(0);
     }
