@@ -3,8 +3,7 @@ package racingcar.model;
 import racingcar.constants.RepeatMessage;
 
 public class Repeat {
-    private static final String NUMBER_FORMAT_REGEX = "^[0-9]+$";
-    private static final int MIN_REPEAT_NUMBER = 1;
+    private static final String NUMBER_FORMAT_REGEX = "^[1-9]+[0-9]*$";
     private static final int MAX_REPEAT_NUMBER = Integer.MAX_VALUE;
 
     private final int number;
@@ -37,7 +36,7 @@ public class Repeat {
     }
 
     private static boolean isOutOfRange(Long number) {
-        return number < MIN_REPEAT_NUMBER || number > MAX_REPEAT_NUMBER;
+        return number > MAX_REPEAT_NUMBER;
     }
 
     public int getNumber() {

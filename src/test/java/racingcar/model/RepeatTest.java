@@ -23,7 +23,7 @@ class RepeatTest {
     void invalidRepeatNumberZero() {
         assertThatThrownBy(() -> Repeat.valueOf("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(RepeatMessage.INVALID_NUMBER_RANGE);
+                .hasMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @Test
@@ -32,6 +32,14 @@ class RepeatTest {
         assertThatThrownBy(() -> Repeat.valueOf("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
+    }
+
+    @Test
+    @DisplayName("시도할 횟수가 0으로 시작하는 수이다")
+    void invalidRepeatNumberStartZero() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> Repeat.valueOf("0123"))
+                .withMessage(RepeatMessage.INVALID_POSITIVE_NUMBER_FORMAT);
     }
 
     @ParameterizedTest(name = "시도할 횟수가 숫자가 아닌 값({0})이다")
