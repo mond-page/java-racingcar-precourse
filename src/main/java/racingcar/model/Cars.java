@@ -29,7 +29,7 @@ public class Cars {
 
     public void move() {
         for (Car car : cars) {
-            car.move(Randoms.pickNumberInRange(0, 9));
+            car.move(Randoms.pickNumberInRange(Car.MIN_NUMBER, Car.MAX_NUMBER));
         }
     }
 

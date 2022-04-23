@@ -3,9 +3,9 @@ package racingcar.model;
 import racingcar.constants.CarMessage;
 
 public class Car {
-    private static final int MIN_NUMBER = 0;
-    private static final int MAX_NUMBER = 9;
     private static final int MOVING_MIN_NUMBER = 4;
+    public static final int MIN_NUMBER = 0;
+    public static final int MAX_NUMBER = 9;
 
     private final Name name;
     private final Position position;
