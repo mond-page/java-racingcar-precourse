@@ -32,11 +32,7 @@ public class Position {
     }
 
     public Position getMorePosition(Position position) {
-        if (this.value - position.getValue() > 0) {
-            return this;
-        }
-
-        return position;
+        return this.value > position.getValue() ? this : position;
     }
 
     @Override
