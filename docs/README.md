@@ -29,16 +29,16 @@ Java 1.8, Gradle 6.8.1, JUnit5
 
 ## 고려사항
 
-- [ ] JDK 8 버전 실행 가능한가?
-- [ ] JDK 제공하는 Random, Scanner API 대신 NextStep API를 사용하였는가?
-  - [ ] Random.pickNumberInRange 메소드를 사용하였는가?
-  - [ ] Console.readLine 메소드를 사용하였는가?
-- [ ] 작성한 Test는 모두 통과하였는가?
-- [ ] 기능, 프로그래밍, 과제의 모든 요구사항을 모두 만족했는가?
-- [ ] 커밋 메세지 컨벤션을 지켰는가?
-- [ ] 일급콜렉션을 활용하여 개발하였는가?
-- [ ] 모든 원시값과 문자열을 포장하였는가?
-- [ ] TDD 사이클을 지키려고 노력하였는가?
+- [x] JDK 8 버전 실행 가능한가?
+- [x] JDK 제공하는 Random, Scanner API 대신 NextStep API를 사용하였는가?
+  - [x] Random.pickNumberInRange 메소드를 사용하였는가?
+  - [x] Console.readLine 메소드를 사용하였는가?
+- [x] 작성한 Test는 모두 통과하였는가?
+- [x] 기능, 프로그래밍, 과제의 모든 요구사항을 모두 만족했는가?
+- [x] 커밋 메세지 컨벤션을 지켰는가?
+- [x] 일급콜렉션을 활용하여 개발하였는가?
+- [x] 모든 원시값과 문자열을 포장하였는가?
+- [x] TDD 사이클을 지키려고 노력하였는가?
 
 ## Todo
 
